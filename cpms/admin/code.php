@@ -80,7 +80,8 @@ if($adminData['status'] !=200)
   
   if($password != '')
   {
-  $hasedPassword= password_hash($password, PASSWORD_BCRYPT);
+  $hashedPassword= password_hash($password, PASSWORD_BCRYPT);
+
   }
   else{
     $hasedPassword= $adminData['data']['password'];
@@ -93,7 +94,7 @@ if($adminData['status'] !=200)
       'email' => $email,
       'password' => $hashedPassword,
       'phone' => $phone,
-      'is_ban' => $is_ban
+      'is_ban' => $is_ban,
 
        
 ];
@@ -115,4 +116,39 @@ else
 
     }
 }
+
+
+
+//saving the categories
+
+if(isset($_POST['saveCategory']))
+{
+$name=validate($_POST['name']);
+$description=validate($_POST['description']);
+$status=isset($_POST['status']) == true? 1:0;
+
+
+
+$data=[
+  'name' => $name,
+  'description' => $description,
+  'status' => $status,
+ 
+
+   
+];
+$result= insert('categories',$data);
+
+if($result)
+{
+ redirect('categories.php','Category Added Successfully!');
+}
+else
+{
+redirect('categories-create.php','Something Went Wrong!');
+
+}
+}
 ?>
+
+
