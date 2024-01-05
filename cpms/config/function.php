@@ -151,7 +151,7 @@ if(isset($_GET[$type]))
 {
       if($_GET[$type]!='')
       {
-            return $_GET['id'];
+            return $_GET[$type];
       }
       else{
       return '<h5>NO ID FOUND</h5>';
