@@ -6,8 +6,8 @@
       
             <div class="card mt-4 shadow">
                   <div class="card-header">
-                        <h4 class="mb-0"> Categories
-                           <a href="categories-create.php" class="btn btn-primary float-end" > Add Categories</a>   
+                        <h4 class="mb-0"> Products
+                           <a href="products-create.php" class="btn btn-primary float-end" > Add Products</a>   
                         </h4>
                   </div>
                   <div class="card-body">
@@ -20,8 +20,18 @@
                                           ID
                                          </th>
                                          <th>
+                                          Image
+                                         </th>
+                                         <th>
                                           Name
                                          </th>
+                                         <th>
+                                          Price
+                                         </th>
+                                         <th>
+                                          Quantity
+                                         </th>
+                                         
                                          <th>
                                           Status
                                          </th>
@@ -31,23 +41,34 @@
                                    </thead>
                                    <tbody>
                                          <?php
-                                         $categories= getAll('categories');
-                                         if(mysqli_num_rows($categories)>0)
+                                         $products= getAll('products');
+                                         if(mysqli_num_rows($products)>0)
                                          {
 
                                          
                                          ?>
 
-                                         <?php foreach($categories as $item) : 
+                                               <?php foreach($products as $item) : 
                                          ?>
                                          <tr>
                                                <td>
                                           <?= $item['id'] ?>
                                                </td>
                                                <td>
+                                       <img src="../<?= $item['image']; ?>" style=" width:60px; height:60px;" alt="img" >  
+                                        
+
+                                               </td>
+                                               <td>
                                           <?= $item['name'] ?>
                                                </td>
-                                             
+                                               <td>
+                                          <?= $item['price'] ?>
+                                               </td>
+                                               <td>
+                                          <?= $item['quantity'] ?>
+                                               </td>
+                                               
                                                <td>
 
                                                <?php
@@ -63,10 +84,17 @@
                                                </td>
                                                
                                                <td>
-                         <a href="categories-edit.php?id=<?=$item['id'];?>" class="btn btn-success btn-sm">Edit </a>
-                         <a href="categories-delete.php?id=<?=$item['id'];?>" class="btn btn-danger btn-sm"
-                         onclick="return confirm('Are you sure you want to delete this?')";>
-                         Delete</a>                            
+                         <a href="products-view.php?id=<?=$item['id'];?>" class="btn btn-info btn-sm">View </a>
+
+                         <a href="products-edit.php?id=<?=$item['id'];?>" class="btn btn-success btn-sm">Edit </a>
+                         <a href="products-delete.php?id=<?=$item['id'];?>" class="btn btn-danger btn-sm"
+                        onclick="return confirm('Are you sure you want to delete this?')";
+                         >
+                         
+                        
+                         Delete
+                        
+                        </a>                            
 
                                                </td>
                                          </tr>
@@ -76,7 +104,7 @@
                                          else{
                                                ?>
                                                <tr>
-                                               <td colspan="4">
+                                               <td colspan="5">
                                                      No Record Found 
                                                </td>
                                                </tr>
@@ -92,7 +120,7 @@
             </div>
 
            
-    
+     
 
 
-<?php include('includes/footer.php'); ?> 
+ <?php include('includes/footer.php'); ?>
